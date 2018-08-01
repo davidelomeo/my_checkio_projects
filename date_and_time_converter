@@ -1,0 +1,28 @@
+from datetime import datetime
+
+def date_time(time: str) -> str:
+
+    only_date = time[:10]
+    only_hr = time[-5:-3]
+    only_mn = time[-2:]
+
+    actual_date = datetime.strptime(only_date, "%d.%m.%Y").strftime("%-d %B %Y")
+    actual_hr = datetime.strptime(only_hr, "%H").strftime("%-H")
+    actual_mn = datetime.strptime(only_mn, "%M").strftime("%-M")
+
+    if int(actual_mn) == 1:
+        full_date = actual_date + ' year ' + actual_hr + ' hour ' + actual_mn + ' minute'
+    else:
+        full_date = actual_date + ' year ' + actual_hr + ' hours ' + actual_mn + ' minutes'
+   
+    return full_date
+
+if __name__ == '__main__':
+    print("Example:")
+    print(date_time('01.01.2000 00:00'))
+
+    # These "asserts" using only for self-checking and not necessary for auto-testing
+    assert date_time("01.01.2000 00:00") == "1 January 2000 year 0 hours 0 minutes", "Millenium"
+    assert date_time("09.05.1945 06:30") == "9 May 1945 year 6 hours 30 minutes", "Victory"
+    assert date_time("20.11.1990 03:55") == "20 November 1990 year 3 hours 55 minutes", "Somebody was born"
+    print("Coding complete? Click 'Check' to earn cool rewards!")
