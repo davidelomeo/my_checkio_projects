@@ -1,0 +1,45 @@
+def checkio(n, m):
+    
+    x = []
+    y = []
+    a = bin(n)
+    b = bin(m)
+    t = 0
+    h = 0
+
+    # create a list out of binary number of n and m
+    for i in a:
+        if i == 'b':
+            x.append(0)
+        else:
+            x.append(int(i))
+    
+    for i in b:
+        if i == 'b':
+            y.append(0)
+        else:
+            y.append(int(i))
+
+    for i in x:
+        if len(x) > len(y):
+            y.insert(0, 0)
+        elif len(x) < len(y):
+            x.insert(0, 0)
+        else:
+            break
+
+    for z in x:
+        if x[t] == y[t]:
+            t += 1
+            continue
+        else:
+            h += 1
+            t += 1
+    
+    return h
+
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert checkio(117, 17) == 3, "First example"
+    assert checkio(1, 2) == 2, "Second example"
+    assert checkio(16, 15) == 5, "Third example"
