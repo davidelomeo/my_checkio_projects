@@ -1,0 +1,35 @@
+from datetime import datetime
+
+def time_converter(time):
+
+    short_time = time[:-5]
+    if len(short_time) != 5:
+        short_time = "0" + short_time
+    new_time = ""
+    
+    if "a" in time:
+        if short_time[:2] == "12":
+            new_time = "00:" + short_time[-2:]
+        else:
+            new_time = datetime.strptime(short_time, "%I:%M").strftime("%H:%M")
+
+    else:
+        if short_time[:2] == "12":
+            new_time = "12:" + short_time[-2:]
+        else:
+            h = short_time[:2]
+            h24 = int(h) + 12
+            new_time = str(h24) + short_time[-3:]
+
+    return new_time
+
+if __name__ == '__main__':
+    print("Example:")
+    print(time_converter('12:30 p.m.'))
+
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert time_converter('12:30 a.m.') == '12:30'
+    assert time_converter('9:00 a.m.') == '09:00'
+    assert time_converter('11:15 p.m.') == '23:15'
+    assert time_converter('12:15 p.m.') == '00:15'
+    print("Coding complete? Click 'Check' to earn cool rewards!")
