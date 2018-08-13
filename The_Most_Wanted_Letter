@@ -1,0 +1,32 @@
+def checkio(text):
+    b = text.lower()
+    mostUsed = 0
+    count = 0
+    for letter in b:
+        while letter.isalpha() == True:
+            break
+        else:
+            continue
+        a = b.count(letter)
+        if a > count:
+            count = a
+            mostUsed = letter
+        elif a == count:
+            mostUsed += letter
+        else:
+            continue
+    finalLetter = sorted(mostUsed)
+    return finalLetter[0]
+
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert checkio("Hello World!") == "l", "Hello test"
+    assert checkio("How do you do?") == "o", "O is most wanted"
+    assert checkio("One") == "e", "All letter only once."
+    assert checkio("Oops!") == "o", "Don't forget about lower case."
+    assert checkio("AAaooo!!!!") == "a", "Only letters."
+    assert checkio("abe") == "a", "The First."
+    print("Start the long test")
+    assert checkio("a" * 9000 + "b" * 1000) == "a", "Long."
+    print("The local tests are done.")
+
