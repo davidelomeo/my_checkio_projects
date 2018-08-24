@@ -1,0 +1,27 @@
+def long_repeat(line):
+    n = ''
+    m = ''
+    for i in line:
+        if n == '':
+            n += i
+        elif i not in n:
+            if len(n) == 1:
+                n = i
+            elif len(n) > 1 and i in m:
+                m += i
+            else:
+                m = i
+        else:
+            n += i
+    
+    if len(n) > len(m):
+        return len(n)
+    else:
+        return len(m)
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert long_repeat('sdsffffse') == 4, "First"
+    assert long_repeat('ddvvrwwwrggg') == 3, "Second"
+    assert long_repeat('abababaab') == 2, "Third"
+    assert long_repeat('') == 0, "Empty"
+    print('"Run" is good. How is "Check"?')
